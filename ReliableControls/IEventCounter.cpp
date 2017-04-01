@@ -2,7 +2,7 @@
 
 
 
-IEventCounter::IEventCounter()
+IEventCounter::IEventCounter(): mCount(0)
 {
 }
 
@@ -11,7 +11,10 @@ IEventCounter::~IEventCounter()
 {
 }
 
-std::string IEventCounter::hello()
+void IEventCounter::ParseEvents(CString deviceID, const char * logName)
 {
-	return "Hello";
+}
+
+int IEventCounter::GetEventCount(CString deviceId) {
+	return mDeviceFaultCount.at(deviceId);
 }
