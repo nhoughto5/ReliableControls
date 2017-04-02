@@ -80,7 +80,13 @@ void IEventCounter::ParseEvents(CString deviceID, const char * logName)
 		prevStage = currentStage;
 	}
 	logFile.close();
-	mDeviceFaultCount[deviceID] += count;
+
+	// Close scope to allow the unique lock to break
+	// at the end of the scope.
+	{
+		std::unique_lock<std::mutex> lock(mMutex);
+		mDeviceFaultCount[deviceID] += count;
+	}
 }
 
 int IEventCounter::GetEventCount(CString deviceId) {

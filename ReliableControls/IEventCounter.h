@@ -15,7 +15,8 @@ public:
 	void ParseEvents(CString deviceID, const char* logName);
 	int GetEventCount(CString deviceId);
 private:
-	std::map<CString, int> mDeviceFaultCount;
+	static std::map<CString, int> mDeviceFaultCount;
+	static std::mutex mMutex;
 };
 
 #endif // !IEVENTCOUNTER_H
