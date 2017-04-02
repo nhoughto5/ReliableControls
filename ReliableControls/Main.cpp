@@ -163,4 +163,9 @@ TEST_CASE("IEventCounter_Test") {
 
 	iEventCounter.ParseEvents("d1", filename.c_str());
 	REQUIRE(iEventCounter.GetEventCount("d1") == 2);
+
+	iEventCounter.ParseEvents("d2", filename.c_str());
+	iEventCounter.ParseEvents("d2", filename.c_str());
+	iEventCounter.ParseEvents("d2", filename.c_str());
+	REQUIRE((iEventCounter.GetEventCount("d2") == 3 && iEventCounter.GetEventCount("d1") == 2));
 }

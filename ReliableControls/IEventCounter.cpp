@@ -70,11 +70,10 @@ void IEventCounter::ParseEvents(CString deviceID, const char * logName)
 		int currentStage = std::stoi(valueStr);
 
 		//Transition to state B if time greater than 5 minutes
-		if (currentState == 'A' && currentStage == 2 && prevStage == 3) {
+		if (currentState == 'A' && currentStage == 2 && prevStage == 3 && greaterThanFiveMinutes(currentTime, prevTimeStamp)) {
 			//5 min time has expired
-			if (greaterThanFiveMinutes(currentTime, prevTimeStamp)) {
-				currentState = 'B';
-			}
+			currentState = 'B';
+
 		}
 		if (currentState == 'A' && prevStage != 3) {
 			prevTimeStamp = currentTime;

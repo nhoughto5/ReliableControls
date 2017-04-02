@@ -28,5 +28,10 @@ When the log parser is detecting that the device is operating normally the FSM s
 The IEventCounter class has a static map data structure as a member variable. This map is used to keep track of the log count for multiple devices. The GetEventCount method simply returns the value in the map with the 'deviceId' key.
 
 ## Testing
-The IEventCounter class is tested using the [Catch](https://github.com/philsquared/Catch) test framework.
+The IEventCounter class is tested using the [Catch](https://github.com/philsquared/Catch) test framework. The main file has no main method. The Catch framework runs a main from within itself which calls each of the test cases. The test cases generate a list of logs which are then fed into the IEventCounter class. The helper methods 'makeNormalLogs' and 'getFault' can be used to automatically generate as many faults and as much normal operation as the test desires.
+
+## Threading
+The IEventCounter class contains two static members which are shared between potential threads. The first is the 'mDeviceFaultCount' map which stores the accumulated log error counts. Secondly there is a mutex, this must be shared between all threads to ensure the shared resource is never accessed by multiple threads simultaneously. 
+
+In the implementation file, when the recorded count of errors is added to the map value it must be locked. A unique lock is used because it calls unlock on the mutex in it's destructor, this is why it is given a closed scope. The benefit of this is that in case some exception is thrown, the mutex will unlock when leaving the scope in which it is defined.
 
