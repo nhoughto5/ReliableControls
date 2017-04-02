@@ -71,20 +71,21 @@ void IEventCounter::ParseEvents(CString deviceID, const char * logName)
 
 		//Transition to state B if time greater than 5 minutes
 		if (currentState == 'A' && currentStage == 2 && prevStage == 3 && greaterThanFiveMinutes(currentTime, prevTimeStamp)) {
-			//5 min time has expired
 			currentState = 'B';
 
 		}
+
+		//Stay on state A
 		if (currentState == 'A' && prevStage != 3) {
 			prevTimeStamp = currentTime;
 		}
 
-		//In stage b and reset
+		//In stage B and reset. Error not reached
 		if (currentState == 'B' && currentStage == 1) {
 			currentState = 'A';
 		}
 
-		//Fault
+		//Fault, go to state 'C' (Return to state 'A')
 		if (currentState == 'B' && currentStage == 0) {
 			currentState = 'A';
 			count++;
