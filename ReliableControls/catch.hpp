@@ -10130,12 +10130,12 @@ namespace Catch {
 namespace Catch {
 
     namespace {
-        std::string getCurrentTimestamp() {
+        std::string getCurrentTimeStamp() {
             // Beware, this is not reentrant because of backward compatibility issues
             // Also, UTC only, again because of backward compatibility (%z is C++11)
             time_t rawtime;
             std::time(&rawtime);
-            const size_t timeStampSize = sizeof("2017-01-16T17:06:45Z");
+            const size_t TimeStampSize = sizeof("2017-01-16T17:06:45Z");
 
 #ifdef _MSC_VER
             std::tm timeInfo = {};
@@ -10145,15 +10145,15 @@ namespace Catch {
             timeInfo = std::gmtime(&rawtime);
 #endif
 
-            char timeStamp[timeStampSize];
+            char TimeStamp[TimeStampSize];
             const char * const fmt = "%Y-%m-%dT%H:%M:%SZ";
 
 #ifdef _MSC_VER
-            std::strftime(timeStamp, timeStampSize, fmt, &timeInfo);
+            std::strftime(TimeStamp, TimeStampSize, fmt, &timeInfo);
 #else
-            std::strftime(timeStamp, timeStampSize, fmt, timeInfo);
+            std::strftime(TimeStamp, TimeStampSize, fmt, timeInfo);
 #endif
-            return std::string(timeStamp);
+            return std::string(TimeStamp);
         }
 
     }
@@ -10222,7 +10222,7 @@ namespace Catch {
                 xml.writeAttribute( "time", "" );
             else
                 xml.writeAttribute( "time", suiteTime );
-            xml.writeAttribute( "timestamp", getCurrentTimestamp() );
+            xml.writeAttribute( "TimeStamp", getCurrentTimeStamp() );
 
             // Write test cases
             for( TestGroupNode::ChildNodes::const_iterator

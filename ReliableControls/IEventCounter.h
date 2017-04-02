@@ -1,19 +1,16 @@
 #ifndef IEVENTCOUNTER_H
 #define IEVENTCOUNTER_H
-
-
 #pragma once
-#include <atlstr.h>
-#include <map>
-#include <fstream>
-#include <string>
-#include <iostream>
+#include "Includes.h"
+#include "TimeStamp.h"
 
 class IEventCounter
 {
 public:
 	IEventCounter();
 	~IEventCounter();
+
+	bool greaterThanFiveMinutes(TimeStamp & currentTime, TimeStamp & previousTime);
 
 	void ParseEvents(CString deviceID, const char* logName);
 	int GetEventCount(CString deviceId);

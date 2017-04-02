@@ -21,6 +21,9 @@
     <ClCompile Include="IEventCounter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TimeStamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp">
@@ -29,7 +32,10 @@
     <ClInclude Include="IEventCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Helpers.h">
+    <ClInclude Include="Includes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeStamp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
