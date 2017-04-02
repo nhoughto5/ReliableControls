@@ -5,6 +5,10 @@
 #pragma once
 #include <atlstr.h>
 #include <map>
+#include <fstream>
+#include <string>
+#include <iostream>
+
 class IEventCounter
 {
 public:
@@ -14,7 +18,6 @@ public:
 	void ParseEvents(CString deviceID, const char* logName);
 	int GetEventCount(CString deviceId);
 private:
-	unsigned int mCount;
 	std::map<CString, int> mDeviceFaultCount;
 };
 
