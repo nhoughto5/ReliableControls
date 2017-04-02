@@ -1,5 +1,19 @@
 #include "IEventCounter.h"
 
+/*
+	Initialize static members of IEventCounter class
+	================================================
+*/
+
+std::mutex IEventCounter::mMutex;
+
+std::map<CString, int> initMap() {
+	std::map<CString, int> i;
+	return i;
+}
+std::map<CString, int> IEventCounter::mDeviceFaultCount(initMap());
+//================================================================
+
 IEventCounter::IEventCounter()
 {
 }
